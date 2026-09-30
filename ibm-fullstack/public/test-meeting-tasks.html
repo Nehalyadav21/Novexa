@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meeting Task Assignment Test</title>
+</head>
+<body>
+    <h1>Meeting Task Assignment Test</h1>
+    <button onclick="testMeetingTaskAssignment()">Test Meeting Task Assignment</button>
+    <div id="result"></div>
+
+    <script>
+        async function testMeetingTaskAssignment() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing...';
+
+            try {
+                const response = await fetch('/api/tasks/create-from-meeting', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        meetingId: 'test-meeting-' + Date.now(),
+                        tasks: [
+                            {
+                                title: 'Review quarterly financials',
+                                description: 'Please review the Q1 financial reports and provide feedback',
+                                assignedTo: 'john',
+                                priority: 'high',
+                                context: 'Finance meeting discussion',
+                                confidence: 0.9,
+                                extractedAt: new Date().toISOString()
+                            },
+                            {
+                                title: 'Prepare marketing presentation',
+                                description: 'Create slides for next week\'s marketing campaign presentation',
+                                assignedTo: 'steve',
+                                priority: 'medium',
+                                context: 'Marketing team discussion',
+                                confidence: 0.85,
+                                extractedAt: new Date().toISOString()
+                            }
+                        ]
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    resultDiv.innerHTML = `
+                        <h3>✅ Test Successful!</h3>
+                        <p>Created ${result.tasks.length} tasks from meeting transcript</p>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <h3>❌ Test Failed</h3>
+                        <p>Error: ${result.error}</p>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <h3>❌ Test Error</h3>
+                    <p>Error: ${error.message}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

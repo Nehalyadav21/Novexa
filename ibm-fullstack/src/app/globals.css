@@ -1,0 +1,31 @@
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+:root {
+  --primary-white: #FFFFFF;
+  --primary-light-gray: #B3B3B3;
+  --primary-dark-gray: #2B2B2B;
+  --primary-lighter-gray: #D4D4D4;
+}
+
+body {
+  background-color: var(--primary-white);
+  color: var(--primary-dark-gray);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Animation for notification slide-in */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
+}

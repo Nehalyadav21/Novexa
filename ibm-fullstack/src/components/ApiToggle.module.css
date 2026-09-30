@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+  font-size: 0.875rem;
+}
+
+.label {
+  margin-right: 0.5rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.toggleButton {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toggleButton.simple {
+  background-color: #059669;
+  color: white;
+}
+
+.toggleButton.standard {
+  background-color: #2563eb;
+  color: white;
+}
+
+.toggleButton:hover {
+  opacity: 0.9;
+}
+
+.hint {
+  margin-left: 0.5rem;
+  color: #6b7280;
+  font-size: 0.75rem;
+  font-style: italic;
+}
